@@ -10,9 +10,9 @@
 
 body{
   font-family:Arial,sans-serif;
-  background:radial-gradient(circle at top,#220505,#090909 55%,#000);
+  background:radial-gradient(circle at top,#220505,#090909 60%,#000);
   color:#fff;
-  overflow-x:hidden; /* FIX utama HP */
+  overflow-x:hidden;
 }
 
 /* WRAPPER */
@@ -25,51 +25,49 @@ body{
   position:relative;
 }
 
-/* HUD */
-.hud,.hud2{
-  position:absolute;
-  border:1px solid rgba(249,115,22,.18);
-  border-radius:50%;
-  animation:spin 18s linear infinite;
-  opacity:.3;
-}
-
-.hud{width:500px;height:500px}
-.hud2{width:650px;height:650px;animation-direction:reverse}
-
-/* PARTICLE */
+/* PARTICLE (HANYA DESKTOP) */
 .particles{
   position:absolute;
   inset:0;
-  background-image:radial-gradient(#fb923c55 1px,transparent 1px);
-  background-size:24px 24px;
-  opacity:.4;
+  background-image:radial-gradient(#fb923c33 1px,transparent 1px);
+  background-size:28px 28px;
+  opacity:.2;
 }
+
+/* HUD (HANYA DESKTOP) */
+.hud,.hud2{
+  position:absolute;
+  border:1px solid rgba(249,115,22,.1);
+  border-radius:50%;
+  animation:spin 25s linear infinite;
+  opacity:.15;
+}
+
+.hud{width:450px;height:450px}
+.hud2{width:600px;height:600px;animation-direction:reverse}
 
 /* CARD */
 .card{
   position:relative;
   z-index:2;
-  width:min(1100px,100%);
+  width:min(1000px,100%);
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:30px;
+  gap:25px;
 }
 
 /* LEFT */
 .left{
-  padding:35px;
-  border-radius:25px;
-  background:rgba(255,255,255,.04);
-  backdrop-filter:blur(12px);
+  padding:30px;
+  border-radius:20px;
+  background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.08);
 }
 
 /* TITLE */
 .title{
-  font-size:clamp(2rem,6vw,4.5rem);
+  font-size:clamp(1.8rem,5vw,3.8rem);
   font-weight:900;
-  line-height:1.1;
 }
 
 .grad{
@@ -78,7 +76,19 @@ body{
   color:transparent;
 }
 
-.sub{margin:12px 0;color:#fdba74}
+.sub{margin-top:10px;color:#fdba74}
+
+/* BUTTON */
+.enterBtn{
+  margin-top:20px;
+  padding:12px 20px;
+  border:none;
+  border-radius:999px;
+  background:linear-gradient(90deg,#fb923c,#ef4444);
+  color:#fff;
+  font-weight:700;
+  cursor:pointer;
+}
 
 /* RIGHT */
 .right{
@@ -87,49 +97,47 @@ body{
   align-items:center;
 }
 
-/* FRAME */
+/* FRAME (SIMPLIFIED) */
 .frame{
-  width:350px;
-  height:420px;
-  border-radius:30px;
+  width:320px;
+  height:380px;
+  border-radius:25px;
   background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.08);
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   position:relative;
 }
 
-/* REACTOR */
+/* REACTOR (lebih ringan) */
 .reactor{
   position:absolute;
-  width:250px;
-  height:250px;
+  width:200px;
+  height:200px;
   border-radius:50%;
-  background:radial-gradient(circle,#67e8f9,#0284c7 40%,transparent 70%);
-  filter:blur(6px);
-  opacity:.7;
+  background:radial-gradient(circle,#67e8f9,#0284c7 50%,transparent 75%);
+  opacity:.6;
 }
 
-/* RINGS */
-.ring,.ring2,.ring3{
+/* RING (DIKURANGI) */
+.ring{
   position:absolute;
+  width:240px;
+  height:240px;
   border-radius:50%;
-  border:2px solid rgba(103,232,249,.25);
+  border:2px solid rgba(103,232,249,.15);
+  animation:spin 12s linear infinite;
 }
-
-.ring{width:220px;height:220px;animation:spin 8s linear infinite}
-.ring2{width:280px;height:280px;animation:spinR 12s linear infinite}
-.ring3{width:330px;height:330px;animation:spin 16s linear infinite}
 
 /* AVATAR */
 .avatar{
-  width:180px;
-  height:180px;
+  width:160px;
+  height:160px;
   border-radius:50%;
   overflow:hidden;
+  border:3px solid #fb923c;
   z-index:2;
-  border:4px solid #fb923c;
 }
 
 .avatar img{
@@ -138,56 +146,29 @@ body{
   object-fit:cover;
 }
 
-/* ENTER TEXT */
-.enterTxt{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  padding:10px 18px;
-  border-radius:999px;
-  background:rgba(249,115,22,.15);
-  border:1px solid rgba(249,115,22,.35);
-  font-weight:700;
-  font-size:14px;
-}
-
-/* LOADER */
-.loader3d{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  z-index:999;
-}
-
-.loader3d.active{display:flex}
-
 /* ANIMATION */
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes spinR{to{transform:rotate(-360deg)}}
 
-/* RESPONSIVE HP FIX */
+/* RESPONSIVE HP (OPTIMASI BESAR) */
 @media(max-width:768px){
+
   .card{
     grid-template-columns:1fr;
     text-align:center;
   }
 
   .frame{
-    width:280px;
-    height:320px;
+    width:260px;
+    height:300px;
   }
 
-  .hud,.hud2{
-    display:none; /* penting: hapus gangguan di HP */
+  /* MATIKAN SEMUA EFEK BERAT */
+  .hud,.hud2,.particles,.ring{
+    display:none !important;
   }
 
   .left{
-    padding:25px;
+    padding:20px;
   }
 }
 </style>
@@ -196,6 +177,7 @@ body{
 <body>
 
 <div class="wrap">
+
   <div class="particles"></div>
   <div class="hud"></div>
   <div class="hud2"></div>
@@ -205,18 +187,19 @@ body{
     <div class="left">
       <div class="title">Hi, I'm <span class="grad">Roys Wanimbo</span></div>
       <div class="sub" id="typing"></div>
-
+ <br>
+      <br> 
       <br>
-        <br>
-      <div class="enterTxt">Masuk Ke Aplikasi</div>
+      <br>
+      <button class="enterBtn" id="enterBtn">
+        Masuk ke Aplikasi
+      </button>
     </div>
 
     <div class="right">
       <div class="frame">
         <div class="reactor"></div>
         <div class="ring"></div>
-        <div class="ring2"></div>
-        <div class="ring3"></div>
 
         <div class="avatar">
           <img src="https://royswanimbo-dev.github.io/royswanimbo.io/assets/images/roys/Profile-roys.png">
@@ -228,11 +211,8 @@ body{
 </div>
 
 <script>
-const words = [
-  'JARVIS Online',
-  'Armor Systems Ready',
-  'Full Stack Developer'
-];
+/* typing ringan */
+const words = ['JARVIS Online','Full Stack Dev','System Ready'];
 
 let i=0,j=0,del=false;
 const el=document.getElementById('typing');
@@ -243,7 +223,7 @@ setInterval(()=>{
 
   if(!del){
     j++;
-    if(j>w.length){del=true;}
+    if(j>w.length) del=true;
   }else{
     j--;
     if(j===0){
@@ -251,12 +231,12 @@ setInterval(()=>{
       i=(i+1)%words.length;
     }
   }
-},120);
+},140);
 
-/* klik masuk */
-document.body.addEventListener('click',()=>{
-  window.location.href='https://royswanimbo.base44.app/';
-},{once:true});
+/* LOGIN INSTANT */
+document.getElementById('enterBtn').addEventListener('click',()=>{
+  window.location.replace('https://royswanimbo.base44.app/');
+});
 </script>
 
 </body>
